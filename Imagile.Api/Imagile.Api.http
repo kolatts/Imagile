@@ -1,0 +1,6 @@
+@Imagile.Api_HostAddress = http://localhost:5285
+
+GET {{Imagile.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
