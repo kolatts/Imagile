@@ -1,3 +1,5 @@
+using Imagile.Domain;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +12,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (ImagileEnvironment.Get() == ImagileEnvironment.Types.Local)
 {
     app.UseSwagger();
     app.UseSwaggerUI();
