@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "coreclr",
+            "name": "Launch Imagile.Ui.Web",
+            "request": "launch",
+            "program":"dotnet",
+            "args": [
+                "watch",
+                "--project",
+                "Imagile.Ui.Web",
+                "--non-interactive"
+            ],
+            "cwd": "${workspaceFolder}/Imagile.Ui.Web",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "coreclr",
+            "name": "Launch Imagile.Api",
+            "request": "launch",
+            "program":"dotnet",
+            "args": [
+                "watch",
+                "--project",
+                "Imagile.Api",
+                "--non-interactive"
+            ],
+            "presentation": {
+                "hidden": true
+            },
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/Imagile.Api",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+              },
+        }
+    ]
+}

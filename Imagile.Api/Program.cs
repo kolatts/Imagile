@@ -10,7 +10,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+// var logger = app.Services.GetRequiredService<ILogger<Program>>();
+// foreach(var file in Directory.GetFiles(Directory.GetCurrentDirectory()))
+// logger.LogInformation(file);
+// logger.LogWarning("File exists for cert:{certExists}", File.Exists(Path.Combine(Directory.GetCurrentDirectory(),"https","aspnetapp.pfx" )));
+// logger.LogWarning("Using Environment: {env}", ImagileEnvironment.Get());
 // Configure the HTTP request pipeline.
 if (ImagileEnvironment.Get() == ImagileEnvironment.Types.Local)
 {
