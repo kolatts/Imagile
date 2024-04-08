@@ -5,10 +5,20 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>Imagile.Cli</PackageId>
+    <Company>Imagile, LLC</Company>
+    <Description>Imagile Command Line Interface</Description>
+    <PackAsTool>true</PackAsTool>
+    <AssemblyName>imagile</AssemblyName>
   </PropertyGroup>
-
+ 
   <ItemGroup>
     <ProjectReference Include="..\Imagile.Domain\Imagile.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.48.0" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
   </ItemGroup>
 
 </Project>
