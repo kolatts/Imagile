@@ -1,43 +1,17 @@
-﻿using System;
+﻿using Imagile.Data.Company.Entities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Imagile.Data.Company
+namespace Imagile.Data.Company;
+
+public class CompanyDbContext(DbContextOptions<CompanyDbContext> options, int? companyId, int? personId) : DbContext(options)
 {
-    public interface IEntityChangeService
-    {
+    public int? CompanyId { get; set; } = companyId;
+    public int? PersonId { get; set; } = personId;
 
-    }
-    public class CompanyDbContext : DbContext
-    {
-
-    }
-
-    public interface ICompanyIdEntity
-    {
-        [Required]  
-        public int? CompanyId { get; set; }
-    }
-    public class Person
-    {
-
-        public int PersonId { get; set; }
-        [Required]
-        [StringLength(255)]
-        public string? FirstName { get; set; }
-
-        [Required]
-        [StringLength(255)]
-        public string? LastName { get; set; }
-        [Required]
-        [StringLength(255)]
-        [EmailAddress]
-        public string? Email { get; set; }
-
-
-    }
+    public DbSet<Person> Persons { get; set; } = null!;
 }

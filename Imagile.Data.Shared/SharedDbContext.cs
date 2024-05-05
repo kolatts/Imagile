@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Imagile.Data.Shared.Entities;
+using Microsoft.EntityFrameworkCore;
 
 public class SharedDbContext : DbContext
 {

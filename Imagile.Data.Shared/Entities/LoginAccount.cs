@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Imagile.Data.Shared.Entities;
+using System.ComponentModel.DataAnnotations;
 
 public class LoginAccount
 {

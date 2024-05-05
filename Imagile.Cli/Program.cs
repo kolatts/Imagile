@@ -1,4 +1,5 @@
 ﻿using System.CommandLine.Builder;
+using System.CommandLine.Parsing;
 
 var rootCommand = new RootCommand("Imagile CLI") { Name = "imagile" };
 rootCommand.AddGlobalOption(EnvironmentOption.Value);

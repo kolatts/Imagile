@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imagile.Domain.Constants;
+namespace Imagile.Domain;
 
-public enum CompanyStatusTypes
+public class ImagileClientSettings
 {
-    Inactive,
-    Active
 }

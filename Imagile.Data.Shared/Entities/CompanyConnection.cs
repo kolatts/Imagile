@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Imagile.Domain.Constants;
+﻿using Imagile.Domain.Constants;
+using System.ComponentModel.DataAnnotations;
+
+namespace Imagile.Data.Shared.Entities;
 
 public class CompanyConnection
 {
@@ -18,7 +20,7 @@ public class CompanyConnection
     public bool IsTestSeedData { get; set; }
     public bool IsRealCustomer { get; set; }
     public int DatabaseShardId { get; set; }
-    public virtual DatabaseShard? DatabaseShard { get; set; }
+    public virtual DatabaseShard DatabaseShard { get; set; } = null!;
 
-    public virtual ICollection<LoginAccount> LoginAccounts { get; set; }
+    public virtual ICollection<LoginAccount> LoginAccounts { get; set; } = [];
 }

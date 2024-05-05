@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace Imagile.Data.Shared.Entities;
 
 public class DatabaseShard
 {
@@ -20,5 +22,5 @@ public class DatabaseShard
     [StringLength(512)] 
     public string InitialCatalog { get; set; } = string.Empty;
     public bool IsDedicated { get; set; }
-    public ICollection<CompanyConnection> CompanyConnections { get; set; } = new();
+    public ICollection<CompanyConnection> CompanyConnections { get; set; } = [];
 }

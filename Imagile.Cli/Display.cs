@@ -1,6 +1,6 @@
 public static class Display
 {
-    public static Color BrandColor { get; } = new(0, 108, 247);
+    public static Color BrandColor { get; } = new(0, 108, 0);
 
     public static Style BrandStyle { get; } = new(BrandColor);
 

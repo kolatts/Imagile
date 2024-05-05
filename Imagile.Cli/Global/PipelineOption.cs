@@ -13,6 +13,6 @@ public static class PipelineOption
     public static Option<bool> Value { get; } = Initialize();
     public static bool GetGlobalPipelineOption(this BindingContext bindingContext)
     {
-        return bindingContext.ParseResult.GetValueForOption(PipelineOption.Value);
+        return bindingContext.ParseResult.GetValueForOption(Value);
     }
 }

@@ -1,12 +1,11 @@
-﻿namespace Imagile.Ui.Mobile
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
+﻿namespace Imagile.Ui.Mobile;
 
-            MainPage = new MainPage();
-        }
+public partial class App : Application
+{
+    public App()
+    {
+        InitializeComponent();
+
+        MainPage = new MainPage();
     }
 }
