@@ -47,6 +47,6 @@ public class DatabaseConnectionStringResolver(IOptions<ImagileHostingSettings> o
         var builder = new SqlConnectionStringBuilder(options.Value.SharedDatabaseConnectionString);
         return Resolve(builder.DataSource, builder.InitialCatalog);
     }
-            
+
 
 }

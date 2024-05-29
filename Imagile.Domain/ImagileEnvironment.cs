@@ -32,7 +32,6 @@ public static class ImagileEnvironment
         }
     public static string ToSharedDatabaseName(this Types type) => $"imagile-{type.ToEnvironmentName()}-shared";
     public static string ToCompanyDatabaseTemplate(this Types type) => $"imagile-{type.ToEnvironmentName()}-company";
-
     public static string ToCompanyDatabaseName(this Types type, int number) =>
         $"{type.ToCompanyDatabaseTemplate()}-{number:##}";
 

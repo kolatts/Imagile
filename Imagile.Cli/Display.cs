@@ -50,5 +50,22 @@ public static class Display
         AnsiConsole.Write(new Text(text, WarningStyle));
         AnsiConsole.WriteLine();
     }
+    public static async Task AddAndExecuteTask(this ProgressContext progress, string taskName, Func<Task> asyncAction)
+    {
+        var task = progress.AddTask(taskName);
+        progress.Refresh();
+        await asyncAction();
+        task.Complete();
+        progress.Refresh();
+    }
+
+    public static void AddAndExecuteTask(this ProgressContext progress, string taskName, Action action)
+    {
+        var task = progress.AddTask(taskName);
+        progress.Refresh();
+        action.Invoke();
+        task.Complete();
+        progress.Refresh();
+    }
 
 }
