@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagile.Domain.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,12 @@ public static class Permission
 {
     public enum Ids
     {
-        ViewEmployees,
-        EditEmployees,
+        [IncludesSecurityGroups(SecurityGroup.Ids.ImagileViewOnly)]
+        ViewUsers,
+        [IncludesPermissions(EditUsers)]
+        [RequiresFeatures(Feature.Ids.UserManagement)]
+        [IncludesSecurityGroups(SecurityGroup.Ids.CompanyAdministrator, SecurityGroup.Ids.ImagileAdministrator)]
+        EditUsers
     }
 }
 
@@ -29,15 +34,8 @@ public static class Feature
 {
     public enum Ids
     {
-        EmployeeManagement = 1,
+      
+        UserManagement
     }
 }
 
-public static class Module
-{
-    public enum Ids
-    {
-        ImagileAdministration = -1,
-        Core = 1,
-    }
-}

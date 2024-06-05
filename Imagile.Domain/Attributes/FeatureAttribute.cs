@@ -1,8 +1,12 @@
 ﻿using Imagile.Domain.Authorization;
+
 namespace Imagile.Domain.Attributes;
+[AttributeUsage(AttributeTargets.Field)]
+public class RequiresAttribute<TEnum>(params TEnum[] required) : Attribute
+{
+    public TEnum[] Required { get; } = required;
+    public bool RequireAll { get; } = true;
+}
 
 [AttributeUsage(AttributeTargets.Field)]
-public class FeatureAttribute(Feature.Ids feature) : Attribute
-{
-    public Feature.Ids FeatureId { get; set; } = feature;
-}
+public class RequiresFeaturesAttribute( params Feature.Ids[] required) : RequiresAttribute<Feature.Ids>(required);
