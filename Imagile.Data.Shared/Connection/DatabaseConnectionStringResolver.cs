@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Imagile.Data.Shared.Extensions;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace Imagile.Data.Shared.Connection;
@@ -20,11 +21,7 @@ public class DatabaseConnectionStringResolver(IOptions<ImagileHostingSettings> o
             InitialCatalog = initialCatalog
         };
         if (builder.DataSource.Contains("localhost", StringComparison.InvariantCultureIgnoreCase))
-        {
-            builder.TrustServerCertificate = true;
-            builder.UserID = "sa";
-            builder.Password = "P@ssw0rd!";
-        }
+            builder.AddLocalAuthentication();
         else
         {
             if (options.Value.ManagedIdentityClientId != null)
@@ -47,6 +44,8 @@ public class DatabaseConnectionStringResolver(IOptions<ImagileHostingSettings> o
         var builder = new SqlConnectionStringBuilder(options.Value.SharedDatabaseConnectionString);
         return Resolve(builder.DataSource, builder.InitialCatalog);
     }
+
+
 
 
 }
