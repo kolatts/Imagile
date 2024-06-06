@@ -1,28 +1,56 @@
-﻿
-using Imagile.Domain.Attributes;
+﻿using Imagile.Domain.Attributes;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-using System.ComponentModel;
+namespace Imagile.Domain.Extensions;
 
 /// <summary>
 /// General extensions on enum values 
 /// </summary>
 public static class EnumExtensions
 {
-
-    public static IEnumerable<TEnum> GetIncluded<TEnum>(this TEnum value)
-    where TEnum : Enum
+    /// <summary>
+    /// This method can be used to get all the Enums specified by <see cref="RequiresAttribute{TEnum}" />.
+    /// This is not recursive, and only returns the direct RequiresAttribute values.
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static IEnumerable<TEnum> GetRequired<TEnum>(this TEnum value)
+        where TEnum : struct, Enum
     {
-        var attribute = value.GetAttributeFirstOrDefault<IncludesAttribute<TEnum>, TEnum>();
-        var included = attribute?.Includes ?? Array.Empty<TEnum>();
-        var additionalIncluded = Array.Empty<TEnum>();
-        foreach (var include in included)
-        {
-            additionalIncluded = additionalIncluded.Union(include.GetIncluded()).ToArray();
-        }
-        return included.Union(additionalIncluded);
+        var attribute = value.GetAttributeFirstOrDefault<RequiresAttribute<TEnum>, TEnum>();
+        var required = attribute?.Required.Where(x => !Equals(x, value)).ToList() ?? [];
+        return required;
+    }   
+    /// <summary>
+    /// Gets the included values of the enum, based on the [Includes<T></T>] attribute or derived attributes.
+    /// This runs recursively to get all included values.
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static IEnumerable<TEnum> GetIncluded<TEnum>(this TEnum value)
+        where TEnum : struct, Enum
+    {
+        return value.GetIncluded([value])
+            .Where(x => !Equals(x, value));
     }
 
+    private static IEnumerable<TEnum> GetIncluded<TEnum>(this TEnum value, HashSet<TEnum> visited)
+        where TEnum : struct, Enum
+    {
+        visited.Add(value);
+        var attribute = value.GetAttributeFirstOrDefault<IncludesAttribute<TEnum>, TEnum>();
+        var included = attribute?.Includes.Where(x => !Equals(x, value)).ToList() ?? [];
+        included.RemoveAll(visited.Contains);
+        var recursivelyIncluded = Array.Empty<TEnum>();
+        foreach (var include in included)
+        {
+            recursivelyIncluded = recursivelyIncluded.Union(include.GetIncluded(visited)).ToArray();
+        }
+        return visited.Union(recursivelyIncluded).Union(included).Distinct();
+    }
     /// <summary>
     /// Wraps the System.Enum.IsDefined for easier syntax, to check if a value (usually cast from int) is valid.
     /// </summary>
@@ -108,14 +136,14 @@ public static class EnumExtensions
         var type = value.GetType();
         var memberInfos = type.GetMember(value.ToString());
         return memberInfos.FirstOrDefault()
-                 ?.GetCustomAttributes(typeof(TAttribute), false)
-                 ?.Cast<TAttribute>()
-                 .FirstOrDefault();
+            ?.GetCustomAttributes(typeof(TAttribute), false)
+            ?.Cast<TAttribute>()
+            .FirstOrDefault();
     }
 
     public static IEnumerable<TAttribute> GetAttributes<TAttribute, TEnum>(this TEnum value)
-    where TAttribute : Attribute
-    where TEnum : Enum
+        where TAttribute : Attribute
+        where TEnum : Enum
     {
         var type = value.GetType();
         var memberInfos = type.GetMember(value.ToString());
