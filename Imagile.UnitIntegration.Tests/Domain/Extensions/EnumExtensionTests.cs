@@ -2,7 +2,7 @@ using FluentAssertions;
 using Imagile.Domain.Attributes;
 using Imagile.Domain.Extensions;
 
-namespace Imagile.UnitIntegration.Tests;
+namespace Imagile.UnitIntegration.Tests.Domain.Extensions;
 
 public class EnumExtensionTests
 {

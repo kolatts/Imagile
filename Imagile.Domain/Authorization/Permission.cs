@@ -13,7 +13,7 @@ public static class Permission
     {
         [IncludesSecurityGroups(SecurityGroup.Ids.ImagileViewOnly)]
         ViewUsers,
-        [IncludesPermissions(EditUsers)]
+        [IncludesPermissions(ViewUsers)]
         [RequiresFeatures(Feature.Ids.UserManagement)]
         [IncludesSecurityGroups(SecurityGroup.Ids.CompanyAdministrator, SecurityGroup.Ids.ImagileAdministrator)]
         EditUsers

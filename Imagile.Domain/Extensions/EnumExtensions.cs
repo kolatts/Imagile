@@ -49,7 +49,7 @@ public static class EnumExtensions
         {
             recursivelyIncluded = recursivelyIncluded.Union(include.GetIncluded(visited)).ToArray();
         }
-        return visited.Union(recursivelyIncluded).Union(included).Distinct();
+        return visited.Distinct();
     }
     /// <summary>
     /// Wraps the System.Enum.IsDefined for easier syntax, to check if a value (usually cast from int) is valid.
