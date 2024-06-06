@@ -1,10 +1,4 @@
-﻿using Imagile.Domain.Attributes;
-using Imagile.Domain.Attributes.Declarative;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Imagile.Domain.Attributes.Declarative;
 
 namespace Imagile.Domain.Authorization;
 
@@ -12,11 +6,11 @@ public static class Permission
 {
     public enum Ids
     {
-        [IncludesSecurityGroups(SecurityGroup.Ids.ImagileViewOnly)]
+        [RequiresSecurityGroups(SecurityGroup.Ids.ImagileViewOnly)]
         ViewUsers,
         [IncludesPermissions(ViewUsers)]
         [RequiresFeatures(Feature.Ids.UserManagement)]
-        [IncludesSecurityGroups(SecurityGroup.Ids.CompanyAdministrator, SecurityGroup.Ids.ImagileAdministrator)]
+        [RequiresSecurityGroups(SecurityGroup.Ids.CompanyAdministrator, SecurityGroup.Ids.ImagileAdministrator)]
         EditUsers
     }
 }
@@ -35,7 +29,9 @@ public static class Feature
 {
     public enum Ids
     {
-        UserManagement
+        UserManagement,
+        [Includes<Ids>(UserManagement)]
+        CompanyManagement
     }
 }
 

@@ -3,4 +3,4 @@
 namespace Imagile.Domain.Attributes.Declarative;
 
 [AttributeUsage(AttributeTargets.Field)]
-public class IncludesPermissionsAttribute(params Permission.Ids[] includes) : IncludesAttribute<Permission.Ids>(includes);
+public class RequiresSecurityGroupsAttribute(params SecurityGroup.Ids[] includes) : RequiresAttribute<SecurityGroup.Ids>(includes);
