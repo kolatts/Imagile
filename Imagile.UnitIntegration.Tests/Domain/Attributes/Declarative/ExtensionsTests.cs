@@ -1,13 +1,16 @@
 using FluentAssertions;
 using Imagile.Domain.Attributes;
+using Imagile.Domain.Attributes.Declarative;
 using Imagile.Domain.Extensions;
+using System.ComponentModel.DataAnnotations;
 
-namespace Imagile.UnitIntegration.Tests.Domain.Extensions;
+namespace Imagile.UnitIntegration.Tests.Domain.Attributes.Declarative;
 
-public class EnumExtensionTests
+public class ExtensionsTests
 {
     public enum TestEnumTypes
     {
+        [Requires<TestEnumAlternativeTypes>(TestEnumAlternativeTypes.Z, TestEnumAlternativeTypes.Y)]
         A,
         [Includes<TestEnumTypes>(A)]
         B,
@@ -22,12 +25,10 @@ public class EnumExtensionTests
 
     public enum TestEnumAlternativeTypes
     {
+        [Requires<TestEnumAlternativeTypes>(X)]
         Z,
         Y,
         X,
-        W,
-        V,
-        U
     }
 
     public class DerivedIncludesAttribute(params TestEnumTypes[] includes) : IncludesAttribute<TestEnumTypes>(includes)
