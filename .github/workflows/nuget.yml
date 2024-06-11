@@ -5,6 +5,9 @@ on:
     inputs:
       project-name:
         type: string
+    secrets:
+      NUGET_API_KEY:
+        required: true
 env: #By convention, we are going to use this directory pathing.
   PROJECT_PATH: ${{inputs.project-name}}/${{inputs.project-name}}.csproj
 jobs:

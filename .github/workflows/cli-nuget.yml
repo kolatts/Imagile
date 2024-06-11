@@ -5,7 +5,8 @@ on:
         - main
 
 jobs:
-    call-workflow-passing-data:
+    nuget:
         uses: kolatts/Imagile/.github/workflows/nuget.yml@main
         with:
             project-name: 'Imagile.Cli'
+        secrets: inherit
