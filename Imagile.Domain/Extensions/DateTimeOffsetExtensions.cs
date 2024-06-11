@@ -15,7 +15,6 @@ public static class DateTimeOffsetExtensions
         return new DateTimeOffset(ticks, dto.Offset);
     }
 
-
     public static DateTimeOffset RoundDown(this DateTimeOffset dto, TimeSpan d)
     {
         var ticks = (long)Math.Floor(dto.Ticks / (double)d.Ticks) * d.Ticks;
