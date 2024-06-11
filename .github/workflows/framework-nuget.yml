@@ -1,0 +1,12 @@
+name: Publish Framework NuGet Package
+on:
+    push:
+        branches:
+        - main
+        paths: 
+        - 'Imagile.Framework/**'
+jobs:
+    call-workflow-passing-data:
+        uses: nuget.yml
+        with:
+            project-name: 'Imagile.Framework'

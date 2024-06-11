@@ -1,0 +1,11 @@
+name: Publish CLI NuGet Package
+on:
+    push:
+        branches:
+        - main
+
+jobs:
+    call-workflow-passing-data:
+        uses: nuget.yml
+        with:
+            project-name: 'Imagile.Cli'

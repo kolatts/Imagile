@@ -14,6 +14,7 @@ public static class Local
     {
         var command = new Command("local", "Interacts with local development environment");
         var setupCommand = new Command("setup", "Sets up the local development environment.");
+        command.Add(setupCommand);
         rootCommand.AddCommand(command);
 
         return rootCommand;
@@ -26,7 +27,6 @@ public static class Local
             .StartAsync(async progress =>
         {
             await ImagileEnvironment.Types.Local.DeleteDatabases(progress);
-
         });
     }
 
