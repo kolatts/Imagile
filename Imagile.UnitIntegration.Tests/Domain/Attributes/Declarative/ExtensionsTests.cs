@@ -1,7 +1,5 @@
 using FluentAssertions;
-using Imagile.Domain.Attributes;
 using Imagile.Domain.Attributes.Declarative;
-using Imagile.Domain.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace Imagile.UnitIntegration.Tests.Domain.Attributes.Declarative;

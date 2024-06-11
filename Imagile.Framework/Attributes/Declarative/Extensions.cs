@@ -34,8 +34,7 @@ public static class Extensions
     }
     /// <summary>
     /// Gets the included values of the enum, based on the [Includes<T></T>] attribute or derived attributes.
-    /// This runs recursively to get all included values, but must be of the same TEnum type,
-    /// for example <see cref="IncludesPermissionsAttribute"/> on a Permission enum.
+    /// This runs recursively to get all included values, but must be of the same TEnum type.
     /// </summary>
     /// <typeparam name="TEnum"></typeparam>
     /// <param name="value"></param>

@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Imagile.Domain\Imagile.Domain.csproj" />
+    <ProjectReference Include="..\Imagile.Framework\Imagile.Framework.csproj" />
   </ItemGroup>
 
 </Project>
