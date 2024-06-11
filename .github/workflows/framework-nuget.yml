@@ -7,6 +7,6 @@ on:
         - 'Imagile.Framework/**'
 jobs:
     call-workflow-passing-data:
-        uses: nuget.yml@main
+        uses: .github/workflows/nuget.yml@main
         with:
             project-name: 'Imagile.Framework'

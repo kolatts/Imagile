@@ -6,6 +6,6 @@ on:
 
 jobs:
     call-workflow-passing-data:
-        uses: nuget.yml@main
+        uses: .github/workflows/nuget.yml@main
         with:
             project-name: 'Imagile.Cli'
