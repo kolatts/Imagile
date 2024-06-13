@@ -10,5 +10,6 @@ jobs:
         uses: kolatts/Imagile/.github/workflows/nuget.yml@main
         with:
             project-name: 'Imagile.Framework'
-        secrets: inherit
+        secrets:
+            NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
             
