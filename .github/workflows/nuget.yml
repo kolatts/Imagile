@@ -5,6 +5,7 @@ on:
     inputs:
       project-name:
         type: string
+      
     
 env: #By convention, we are going to use this directory pathing.
   PROJECT_PATH: ${{inputs.project-name}}/${{inputs.project-name}}.csproj
@@ -28,8 +29,7 @@ jobs:
 
       - name: Install GitVersion.Tool
         run: dotnet tool install --global GitVersion.Tool
-      - name: test
-        run: echo "${{ secrets.NUGET_API_KEY }}"
+
       - name: Determine version
         id: version
         run: dotnet-gitversion /config gitversion.yml /output json > version.json
@@ -46,5 +46,9 @@ jobs:
       - name: Create NuGet package
         run: dotnet pack --configuration Release ${{ env.PROJECT_PATH }} -p:Version=${{ env.NUGET_VERSION }} --no-build --no-restore
 
-      - name: Publish NuGet package
-        run: dotnet nuget push ${{inputs.project-name}}/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      - shell: bash
+        name: Publish NuGet package
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: | 
+         dotnet nuget push ${{inputs.project-name}}/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
