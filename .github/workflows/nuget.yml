@@ -5,9 +5,7 @@ on:
     inputs:
       project-name:
         type: string
-    secrets:
-      NUGET_API_KEY:
-        required: true
+    
 env: #By convention, we are going to use this directory pathing.
   PROJECT_PATH: ${{inputs.project-name}}/${{inputs.project-name}}.csproj
 jobs:
@@ -30,7 +28,8 @@ jobs:
 
       - name: Install GitVersion.Tool
         run: dotnet tool install --global GitVersion.Tool
-
+      - name: test
+        run: echo "${{ secrets.NUGET_API_KEY }}"
       - name: Determine version
         id: version
         run: dotnet-gitversion /config gitversion.yml /output json > version.json
