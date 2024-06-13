@@ -22,7 +22,7 @@ public static class Local
 
     private static async Task SetupInternal()
     {
-        var progress = AnsiConsole.Progress()
+        await AnsiConsole.Progress()
             .SimpleColumns()
             .StartAsync(async progress =>
         {
