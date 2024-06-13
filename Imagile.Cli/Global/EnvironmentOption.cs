@@ -1,4 +1,4 @@
-using Imagile.Domain;
+using Imagile.Domain.Hosting;
 
 /// <summary>
 /// Specifies the global environment option, which can be used by binders.

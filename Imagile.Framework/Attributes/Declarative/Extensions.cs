@@ -1,11 +1,7 @@
-﻿using Imagile.Domain.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Imagile.Domain.Attributes.Declarative;
+using Imagile.Domain.Extensions;
 
-namespace Imagile.Domain.Attributes.Declarative;
+namespace Imagile.Framework.Attributes.Declarative;
 public static class Extensions
 {
     /// <summary>
