@@ -12,7 +12,6 @@ env: #By convention, we are going to use this directory pathing.
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    environment: production
     steps:
       # Add more steps as needed
       - name: Setup Node.js v16
