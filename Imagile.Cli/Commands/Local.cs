@@ -1,5 +1,5 @@
 ﻿using Imagile.Cli.Binders;
-using Imagile.Domain;
+using Imagile.Domain.Hosting;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ public static class Local
     {
         var command = new Command("local", "Interacts with local development environment");
         var setupCommand = new Command("setup", "Sets up the local development environment.");
+        command.Add(setupCommand);
         rootCommand.AddCommand(command);
 
         return rootCommand;
@@ -21,7 +22,7 @@ public static class Local
 
     private static async Task SetupInternal()
     {
-        var progress = AnsiConsole.Progress()
+        await AnsiConsole.Progress()
             .SimpleColumns()
             .StartAsync(async progress =>
         {

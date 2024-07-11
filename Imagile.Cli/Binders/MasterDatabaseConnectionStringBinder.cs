@@ -1,5 +1,5 @@
 ﻿using Imagile.Data.Shared.Extensions;
-using Imagile.Domain;
+using Imagile.Domain.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 

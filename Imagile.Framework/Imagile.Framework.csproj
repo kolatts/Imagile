@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Imagile.Framework\Imagile.Framework.csproj" />
-  </ItemGroup>
-
 </Project>

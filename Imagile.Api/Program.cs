@@ -1,4 +1,4 @@
-using Imagile.Domain;
+using Imagile.Domain.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 

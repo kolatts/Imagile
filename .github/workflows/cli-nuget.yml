@@ -1,0 +1,13 @@
+name: Publish CLI NuGet Package
+on:
+    push:
+        branches:
+        - main
+
+jobs:
+    nuget:
+        uses: kolatts/Imagile/.github/workflows/nuget.yml@main
+        with:
+            project-name: 'Imagile.Cli'
+        secrets: inherit
+        

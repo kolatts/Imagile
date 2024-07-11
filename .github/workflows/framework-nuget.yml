@@ -1,0 +1,15 @@
+name: Publish Framework NuGet Package
+on:
+    push:
+        branches:
+        - main
+        paths: 
+        - 'Imagile.Framework/**'
+jobs:
+    nuget:
+        uses: kolatts/Imagile/.github/workflows/nuget.yml@main
+        with:
+            project-name: 'Imagile.Framework'
+        secrets: inherit
+
+            

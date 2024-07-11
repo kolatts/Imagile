@@ -1,0 +1,53 @@
+# https://docs.github.com/en/actions/using-workflows/reusing-workflows
+
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        type: string
+      
+    
+env: #By convention, we are going to use this directory pathing.
+  PROJECT_PATH: ${{inputs.project-name}}/${{inputs.project-name}}.csproj
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Add more steps as needed
+      # - name: Setup Node.js v16
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: "16.x"
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+
+      - name: Install GitVersion.Tool
+        run: dotnet tool install --global GitVersion.Tool
+
+      - name: Determine version
+        id: version
+        run: dotnet-gitversion /config gitversion.yml /output json > version.json
+
+      - name: Set NuGet version environment variable
+        run: echo "NUGET_VERSION=$(jq -r '.SemVer' version.json)" >> $GITHUB_ENV
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: Build project
+        run: dotnet build --configuration Release ${{ env.PROJECT_PATH }} -p:Version=${{ env.NUGET_VERSION }}
+
+      - name: Create NuGet package
+        run: dotnet pack --configuration Release ${{ env.PROJECT_PATH }} -p:Version=${{ env.NUGET_VERSION }} --no-build --no-restore
+
+      - shell: bash
+        name: Publish NuGet package
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: | 
+         dotnet nuget push ${{inputs.project-name}}/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json

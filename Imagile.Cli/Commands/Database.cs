@@ -1,5 +1,5 @@
 using Imagile.Cli.Binders;
-using Imagile.Domain;
+using Imagile.Domain.Hosting;
 using Microsoft.Data.SqlClient;
 
 internal static class Database

@@ -13,6 +13,7 @@
 		<Copyright>Imagile, 2024</Copyright>
 		<PackAsTool>true</PackAsTool>
 		<AssemblyName>imagile</AssemblyName>
+			<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,10 +21,12 @@
 		<ProjectReference Include="..\Imagile.Domain\Imagile.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
-		<PackageReference Include="Spectre.Console" Version="0.48.0" />
-		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-	</ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
+    <PackageReference Include="Spectre.Console" Version="0.48.0" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
+  </ItemGroup>
 </Project>
