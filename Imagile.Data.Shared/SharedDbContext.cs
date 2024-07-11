@@ -1,21 +1,11 @@
 ﻿using Imagile.Data.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
-public class SharedDbContext : DbContext
+public class SharedDbContext(DbContextOptions<SharedDbContext> options) : DbContext(options)
 {
-    public SharedDbContext()
-    {
-        
-    }
-
-    public SharedDbContext(DbContextOptions<SharedDbContext> options) : base(options)
-    {
-        
-    }
-
-    public DbSet<DatabaseShard> DatabaseShards { get; set; }
-    public DbSet<CompanyConnection> CompanyConnections { get; set; }
-    public DbSet<LoginAccount> LoginAccounts { get; set; }
+    public DbSet<DatabaseShard> DatabaseShards => Set<DatabaseShard>();
+    public DbSet<CompanyConnection> CompanyConnections => Set<CompanyConnection>();
+    public DbSet<LoginAccount> LoginAccounts => Set<LoginAccount>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,3 +15,4 @@ public class SharedDbContext : DbContext
         modelBuilder.SetDateTimeOffsetDefaultPrecision(0);
     }
 }
+
